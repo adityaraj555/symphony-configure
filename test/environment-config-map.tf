@@ -44,6 +44,7 @@ output "environment_config_map" {
     callback_lambda_name = local.callback_lambda_name
 
     // ARN for the EV-Factory account role that access the callback lambda
-    cross_account_callback_lambda = "arn:aws:iam::671236419730:role/measurement-service-lambda-LambdaExecutionRole-1AXK8XB6KLRTH"
+    cross_account_callback_lambda = "arn:aws:iam::366384665027:role/measurement-service-lambda-LambdaExecutionRole-2JESM57HC4J4"
+
   }
 }
