@@ -89,33 +89,6 @@ output "environment_config_map" {
     POLICY
 
     // inline policy to access callback lambda and s3 
-    inline_policy_external_service = <<POLICY
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Action": [
-                    "lambda:InvokeFunction",
-                    "lambda:InvokeAsync",
-                    "ec2:DescribeInstances",
-                    "ec2:DescribeInstanceStatus",
-                    "ec2:DeleteTags",
-                    "ec2:CreateTags",
-                    "s3:PutObject",
-                    "s3:PutObjectAcl",
-                    "s3:DeleteObject",
-                    "s3:GetObject",
-                    "s3:GetObjectAcl"
-                ],
-                "Resource": [
-                    "arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.callback_lambda_name}",
-                    "arn:aws:s3:::${local.resource_name_prefix}-s3-property-data-orchestrator"
-                ],
-                "Effect": "Allow",
-                "Sid": "AccessCallback"
-            }
-        ]
-    }
-    POLICY
+    
   }
 }
