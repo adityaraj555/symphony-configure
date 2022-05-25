@@ -9,6 +9,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:e0bae8f.87"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -51,6 +52,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -91,6 +93,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:e0bae8f.86"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -204,6 +207,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -245,6 +249,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -287,6 +292,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:e0bae8f.91"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -339,6 +345,7 @@ output "sfn_lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
