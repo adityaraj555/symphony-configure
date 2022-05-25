@@ -9,6 +9,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:e0bae8f.87"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -51,6 +52,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -91,6 +93,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:e0bae8f.86"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -107,6 +110,46 @@ output "lambda_configmap" {
         "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
         "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
       ],
+      lambda_assume_role_policy = <<-EOF
+        {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                      }
+                  }
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:pmf-conversion-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                      }
+                  }
+              }
+          ]
+        }
+      EOF
       lambda_inline_policy = <<-EOF
       {
           "Version": "2012-10-17",
@@ -164,6 +207,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -205,6 +249,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -247,6 +292,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:e0bae8f.91"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -299,6 +345,7 @@ output "sfn_lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
