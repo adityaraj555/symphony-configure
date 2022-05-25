@@ -48,7 +48,7 @@ output "environment_config_map" {
 
     // trust relationship value for external services like hipster/MA/EV_json converter
     trust_relashionships_external_service = <<EOT
-  {
+{
           "Version": "2012-10-17",
           "Statement": [
               {
