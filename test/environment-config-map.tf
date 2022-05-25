@@ -46,5 +46,76 @@ output "environment_config_map" {
     // ARN for the EV-Factory account role that access the callback lambda
     cross_account_callback_lambda = "arn:aws:iam::366384665027:role/measurement-service-lambda-LambdaExecutionRole-2JESM57HC4J4"
 
+    // trust relationship value for external services like hipster/MA/EV_json converter
+    trust_relashionships_external_service = <<POLICY
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                      }
+                  }
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:pmf-conversion-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                      }
+                  }
+              }
+          ]
+      }
+    POLICY
+
+    // inline policy to access callback lambda and s3
+    inline_policy_external_service = <<POLICY
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Action": [
+                    "lambda:InvokeFunction",
+                    "lambda:InvokeAsync",
+                    "ec2:DescribeInstances",
+                    "ec2:DescribeInstanceStatus",
+                    "ec2:DeleteTags",
+                    "ec2:CreateTags",
+                    "s3:PutObject",
+                    "s3:PutObjectAcl",
+                    "s3:DeleteObject",
+                    "s3:GetObject",
+                    "s3:GetObjectAcl"
+                ],
+                "Resource": [
+                    "arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.callback_lambda_name}",
+                    "arn:aws:s3:::${local.resource_name_prefix}-s3-property-data-orchestrator"
+                ],
+                "Effect": "Allow",
+                "Sid": "AccessCallback"
+            }
+        ]
+    }
+    POLICY
   }
 }
