@@ -47,7 +47,8 @@ output "environment_config_map" {
     cross_account_callback_lambda = "arn:aws:iam::671236419730:role/measurement-service-lambda-LambdaExecutionRole-1AXK8XB6KLRTH"
 
     // trust relationship value for external services like hipster/MA/EV_json converter
-    trust_relashionships_external_service = {
+    trust_relashionships_external_service = <<EOT
+  {
           "Version": "2012-10-17",
           "Statement": [
               {
@@ -85,7 +86,7 @@ output "environment_config_map" {
               }
           ]
       }
-    
+    EOT
 
     // inline policy to access callback lambda and s3 
     
