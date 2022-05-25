@@ -87,8 +87,6 @@ output "environment_config_map" {
           ]
       }
     EOT
-
-    // inline policy to access callback lambda and s3 
     
   }
 }
