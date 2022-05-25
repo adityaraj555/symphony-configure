@@ -107,6 +107,46 @@ output "lambda_configmap" {
         "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
         "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
       ],
+      lambda_assume_role_policy = <<-EOF
+        {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                      }
+                  }
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:pmf-conversion-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                      }
+                  }
+              }
+          ]
+        }
+      EOF
       lambda_inline_policy = <<-EOF
       {
           "Version": "2012-10-17",
