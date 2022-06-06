@@ -203,7 +203,7 @@ output "lambda_configmap" {
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:e0bae8f.90"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:783c021.7"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
