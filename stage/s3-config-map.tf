@@ -1,5 +1,5 @@
 /**
- * DocumentDB config map
+ * S3 config map
  */
 
 output "s3_config_map" {
