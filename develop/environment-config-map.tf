@@ -44,7 +44,7 @@ output "environment_config_map" {
     callback_lambda_name = local.callback_lambda_name
 
     // ARN for the EV-Factory account role that access the callback lambda
-    cross_account_callback_lambda = "arn:aws:iam::671236419730:role/measurement-service-lambda-LambdaExecutionRole-1AXK8XB6KLRTH"
+    cross_account_callback_lambda = "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-lambda-LambdaExecutionRole-1AXK8XB6KLRTH"
 
     // trust relationship value for external services like hipster/MA/EV_json converter
     trust_relashionships_external_service = <<EOT
@@ -61,26 +61,26 @@ output "environment_config_map" {
               {
                   "Effect": "Allow",
                   "Principal": {
-                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                      "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
                   },
                   "Action": "sts:AssumeRoleWithWebIdentity",
                   "Condition": {
                       "StringEquals": {
-                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account",
-                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
                       }
                   }
               },
               {
                   "Effect": "Allow",
                   "Principal": {
-                      "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566"
+                      "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
                   },
                   "Action": "sts:AssumeRoleWithWebIdentity",
                   "Condition": {
                       "StringEquals": {
-                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:sub": "system:serviceaccount:factory-dx-human-extraction:pmf-conversion-service-account",
-                          "oidc.eks.us-east-2.amazonaws.com/id/43F424AE2B4DD0EA667BEF4D39D2F566:aud": "sts.amazonaws.com"
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:pmf-conversion-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
                       }
                   }
               }
