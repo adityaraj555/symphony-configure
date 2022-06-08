@@ -77,6 +77,9 @@ locals {
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"
 
+  // factory account id
+  evtech_factory_account = "671236419730"
+
   // EKS Cluster ID.  Used to allow services from this cluster to call lambda functions.
   eks_cluster_id = "43F424AE2B4DD0EA667BEF4D39D2F566"
 

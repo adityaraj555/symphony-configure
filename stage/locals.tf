@@ -1,6 +1,6 @@
 locals {
   // Environment where the resources will be deployed
-  environment = "test"
+  environment = "stage"
 
   stack_level = var.build_number == "" ? "app" : "tb-${var.build_number}"
 
@@ -47,38 +47,38 @@ locals {
   receive_legacy_order_queue_name = "receiveLegacyOrder"
 
   // Account id
-  account_id = "952028532360"
+  account_id = "633128282718"
 
   // ECR PATH.
   ecr_path = "176992832580.dkr.ecr.${local.region}.amazonaws.com/property-data-orchestrator"
 
   // VPC where lambdas will be installed
-  lambda_vpc_id = "vpc-00f31e72e9c6362b3"
+  lambda_vpc_id = "vpc-0bfc3932d45d2d11f"
 
   // slack channel to send error notifications
   slack_channel = "C03G9F8KDTJ"
 
   // secret manager ARN
-  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:952028532360:secret:property-data-orchestrator-secret-Ry4z7U"
+  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:633128282718:secret:property-data-orchestrator-secret-7DejBb"
 
-  endpoint_url_legacy = "https://intranetrest.cmh.reportstest.evinternal.net"
+  endpoint_url_legacy = "https://intranetrest.cmh.reportsstage.evinternal.net"
 
   // external endpoints lambda env variable
-  legacy_endpoint            = "https://intranetrest.cmh.reportstest.evinternal.net/"
+  legacy_endpoint            = "https://intranetrest.cmh.reportsstage.evinternal.net/"
   ev_json_convertor_endpoint = "https://evconvertor.free.beeceptor.com/getfile"
 
   // external URL to call form state machine
-  ENDPOINT_URL_LEGACY      = "https://intranetrest.cmh.reportstest.evinternal.net"
-  ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.pgtest.evinternal.net"
-  ENDPOINT_URL_MA          = "https://api.cmh.platform-test2.evinternal.net/factory-automeasure"
-  ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-test2.evinternal.net/inform-measures"
+  ENDPOINT_URL_LEGACY      = "https://intranetrest.cmh.reportsstage.evinternal.net"
+  ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.pgstage.evinternal.net"
+  ENDPOINT_URL_MA          = "https://api.cmh.platform-stage2.evinternal.net/factory-automeasure"
+  ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-stage2.evinternal.net/inform-measures"
 
   // IAM Role of Monolith Legacy Reports
-  legacy_report_account = "009077747887"
+  legacy_report_account = "666553143078"
 
   // factory account id
-  evtech_factory_account = "366384665027"
+  evtech_factory_account = "105810807432"
 
   // EKS Cluster ID.  Used to allow services from this cluster to call lambda functions.
-  eks_cluster_id = "67D98F13C8DD341212F95E682BFA75EE"
+  eks_cluster_id = "70E0D0941C457DF19A8BA89DA8FE8276"
 }
