@@ -11,7 +11,7 @@ output "s3_config_map" {
         "arn:aws:iam::105810807432:root",
         "arn:aws:iam::105810807432:role/us-east-2-roofmodel-green-hermes-instance",
         "arn:aws:iam::105810807432:role/EC2-Admin",
-        "arn:aws:iam::105810807432:role/measurement-service-lambda-LambdaExecutionRole-2JESM57HC4J4"   
+        "arn:aws:iam::105810807432:role/measurement-service-lambda-LambdaExecutionRole-6V7XQJ542YDE"   
       ]
       actions = [
       "s3:GetObject",
