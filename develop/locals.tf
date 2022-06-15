@@ -65,7 +65,7 @@ locals {
 
   // external endpoints lambda env variable
   legacy_endpoint            = "https://intranetrest.cmh.reportstest.evinternal.net/"
-  ev_json_convertor_endpoint = "https://evconvertor.free.beeceptor.com/getfile"
+  ev_json_convertor_endpoint = "https://api.cmh.platform-dev2.evinternal.net/factory-dx-human-extraction/pmf-conversion/converter"
 
 
   // external URL to call form state machine
