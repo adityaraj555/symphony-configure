@@ -22,8 +22,9 @@ output "sqs_config_map" {
       "Principal": {
         "AWS": [  
          "arn:aws:iam::${local.legacy_report_account}:role/EC2SSMRole",
-          "arn:aws:iam::${local.account_id}:root"
-        ]
+          "arn:aws:iam::${local.account_id}:root"  
+        ],
+        "Service": "sns.amazonaws.com"
       },
       "Action": "SQS:*",
       "Resource": "arn:aws:sqs:${local.region}:${local.account_id}:${local.resource_name_prefix}-sqs-${local.receive_legacy_order_queue_name}"
