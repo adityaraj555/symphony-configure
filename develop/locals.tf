@@ -40,8 +40,14 @@ locals {
   // Name of the evmlconverter lambda function
   evmlconveter_lambda_name = "evmlconverter"
 
+  // Name of the upload_image lambda function
+  uploadimage_lambda_name = "uploadimage"
+
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
+
+  // Name of the symphony workflow
+  ais_workflow_name = "ais"
 
   // Name of the sqs queue
   receive_legacy_order_queue_name = "receiveLegacyOrder"
