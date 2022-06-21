@@ -17,6 +17,13 @@ output "step_function_config_map" {
       ENDPOINT_URL_MA = "${local.ENDPOINT_URL_MA}",
       ENDPOINT_URL_HIPSTER = "${local.ENDPOINT_URL_HIPSTER}"
       }
+    },
+    "${local.ais_workflow_name}" = {
+      source_path = "../../stepfunctions/ais/state-machine.json",
+      sfn_def_env_vars = {
+        region        = "${local.region}",
+        resource_name_prefix = "${local.resource_name_prefix}"
+      }
     }
   }
 }
