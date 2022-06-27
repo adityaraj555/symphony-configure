@@ -6,7 +6,7 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:a5f9c5c.93"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:6c72f76.25"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 60
@@ -47,7 +47,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:a5f9c5c.1"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:6c72f76.24"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 60
@@ -119,7 +119,7 @@ output "lambda_configmap" {
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:783c021.7"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:6c72f76.27"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -201,7 +201,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:e0bae8f.91"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:6c72f76.28"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 60
@@ -245,7 +245,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:d482c99.18"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:6c72f76.29"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -293,7 +293,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:e0bae8f.89"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:6c72f76.26"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
