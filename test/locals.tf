@@ -42,7 +42,7 @@ locals {
 
    // Name of the upload_image lambda function
   uploadimage_lambda_name = "uploadimage"
-  
+
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
 
@@ -79,7 +79,7 @@ locals {
   ENDPOINT_URL_MA          = "https://api.cmh.platform-test2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-test2.evinternal.net/inform-measures"
 
-    // external Lambdas ARN to call form ais state machine
+  // external Lambdas ARN to call form ais state machine
   ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-imagery-check"
   ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-building-detection"
   ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-image-selection"

@@ -21,8 +21,13 @@ output "step_function_config_map" {
     "${local.ais_workflow_name}" = {
       source_path = "../../stepfunctions/ais/state-machine.json",
       sfn_def_env_vars = {
-        region        = "${local.region}",
-        resource_name_prefix = "${local.resource_name_prefix}"
+      region        = "${local.region}",
+      resource_name_prefix = "${local.resource_name_prefix}",
+      ARN_IMAGERY_CHECK = "${local.ARN_IMAGERY_CHECK}",
+      ARN_BUILDING_DETECTION = "${local.ARN_BUILDING_DETECTION}",
+      ARN_IMAGE_SELECTION = "${local.ARN_IMAGE_SELECTION}",
+      ARN_UPLOAD_IMAGE="${local.ARN_UPLOAD_IMAGE}"
+      ENDPOINT_URL_LEGACY = "${local.ENDPOINT_URL_LEGACY}",
       }
     }
   }
