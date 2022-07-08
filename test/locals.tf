@@ -40,8 +40,14 @@ locals {
   // Name of the evmlconverter lambda function
   evmlconveter_lambda_name = "evmlconverter"
 
+   // Name of the upload_image lambda function
+  uploadimage_lambda_name = "uploadimage"
+  
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
+
+  // Name of the AIS workflow
+  ais_workflow_name="ais"
 
   // Name of the symphony workflow
   receive_legacy_order_queue_name = "receiveLegacyOrder"
@@ -72,6 +78,12 @@ locals {
   ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.pgtest.evinternal.net"
   ENDPOINT_URL_MA          = "https://api.cmh.platform-test2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-test2.evinternal.net/inform-measures"
+
+    // external Lambdas ARN to call form ais state machine
+  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-imagery-check"
+  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-building-detection"
+  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-image-selection"
+  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-uploadimage"
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"
