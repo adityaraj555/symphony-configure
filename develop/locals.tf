@@ -80,6 +80,12 @@ locals {
   ENDPOINT_URL_MA          = "https://api.cmh.platform-dev2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-dev2.evinternal.net/inform-measures"
 
+  // external Lambdas ARN to call form ais state machine
+  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-imagery-check"
+  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-building-detection"
+  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-image-selection"
+  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-uploadimage"
+
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"
 
