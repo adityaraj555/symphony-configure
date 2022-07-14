@@ -90,7 +90,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:a5f9c5c.1"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:173f51b.42"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
