@@ -56,7 +56,7 @@ locals {
   lambda_vpc_id = "vpc-09d95204cb5271921"
 
   // slack channel to send error notifications
-  slack_channel = "C03G9F8KDTJ"
+  slack_channel = "C03K2EQSRQQ"
 
   // secret manager ARN
   property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:${local.account_id}:secret:property-data-orchestrator-secret-SfXCVm"
