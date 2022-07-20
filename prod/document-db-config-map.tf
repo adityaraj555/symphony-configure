@@ -5,7 +5,7 @@
 output "document_db_config_map" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
-    name                         = "prop-data-orchestrator-datastore1"
+    name                         = "prop-data-orchestrator-datastore"
     vpc_id                       = local.lambda_vpc_id,
     db_port                      = 27017,
     master_username              = "symphonyMasterUser",
@@ -18,7 +18,7 @@ output "document_db_config_map" {
     engine                       = "docdb",
     engine_version               = "4.0.0"
     subnet_ids                   = ["subnet-0f71d0fae70c53821", "subnet-0f83032ea0c0419ed", "subnet-0c10923aa5dc00685"],
-    cluster_size                 = 1,
+    cluster_size                 = 3,
     instance_class               = "db.r6g.xlarge",
     cluster_family               = "docdb4.0",
     allowed_cidr_blocks          = ["10.240.0.0/16"]
