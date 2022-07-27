@@ -334,13 +334,15 @@ output "lambda_configmap" {
       EOF
     },
      "${local.uploadimage_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:e0bae8f.91"
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:a5d9282.51"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "LEGACY_ENDPOINT":"${local.endpoint_url_legacy}",
         "SlackChannel" : "${local.slack_channel}"
       }
       vpc_id = local.lambda_vpc_id,
