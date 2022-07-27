@@ -341,6 +341,8 @@ output "lambda_configmap" {
       timeout            = 60
       memory_size        = 512
       environment_variables = {
+        "SlackChannel" : "${local.slack_channel}",
+        "LEGACY_ENDPOINT":"${local.endpoint_url_legacy}",
         "SlackChannel" : "${local.slack_channel}"
       }
       vpc_id = local.lambda_vpc_id,
