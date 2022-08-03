@@ -72,6 +72,7 @@ locals {
   // external endpoints lambda env variable
   legacy_endpoint            = "https://intranetrest.cmh.reportstest.evinternal.net/"
   ev_json_convertor_endpoint = "https://api.cmh.platform-dev2.evinternal.net/factory-dx-human-extraction/pmf-conversion/converter"
+  upload_pdw = "https://api.cmh.platform-dev2.evinternal.net/factory-dx-human-extraction/pmf-conversion/pdw"
 
 
   // external URL to call form state machine
@@ -79,7 +80,7 @@ locals {
   ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.imageproc.evinternal.net"
   ENDPOINT_URL_MA          = "https://api.cmh.platform-dev2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-dev2.evinternal.net/inform-measures"
-
+  evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"
   // external Lambdas ARN to call form ais state machine
   ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-imagery-check"
   ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-building-detection"
