@@ -13,7 +13,8 @@ output "step_function_config_map" {
       ENDPOINT_URL_LEGACY = "${local.ENDPOINT_URL_LEGACY}",
       ENDPOINT_URL_3DMODELLING = "${local.ENDPOINT_URL_3DMODELLING}",
       ENDPOINT_URL_MA = "${local.ENDPOINT_URL_MA}",
-      ENDPOINT_URL_HIPSTER = "${local.ENDPOINT_URL_HIPSTER}"
+      ENDPOINT_URL_HIPSTER = "${local.ENDPOINT_URL_HIPSTER}",
+      ENDPOINT_URL_UPLOAD_PDW = "${local.upload_pdw}"
       }
     },
     "${local.ais_workflow_name}" = {

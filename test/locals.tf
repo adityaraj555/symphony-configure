@@ -72,7 +72,7 @@ locals {
   // external endpoints lambda env variable
   legacy_endpoint            = "https://intranetrest.cmh.reportstest.evinternal.net/"
   ev_json_convertor_endpoint = "https://api.cmh.platform-test2.evinternal.net/factory-dx-human-extraction/pmf-conversion/converter"
-
+  upload_pdw = "https://api.cmh.platform-test2.evinternal.net/factory-dx-human-extraction/pmf-conversion/pdw"
   // external URL to call form state machine
   ENDPOINT_URL_LEGACY      = "https://intranetrest.cmh.reportstest.evinternal.net"
   ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.pgtest.evinternal.net"
