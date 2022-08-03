@@ -78,6 +78,7 @@ locals {
   ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.pgtest.evinternal.net"
   ENDPOINT_URL_MA          = "https://api.cmh.platform-test2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-test2.evinternal.net/inform-measures"
+  evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"
 
   // external Lambdas ARN to call form ais state machine
   ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-imagery-check"

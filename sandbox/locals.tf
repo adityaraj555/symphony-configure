@@ -73,6 +73,7 @@ locals {
   ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.imageproc.evinternal.net"
   ENDPOINT_URL_MA          = "https://api.cmh.platform-dev2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-dev2.evinternal.net/inform-measures"
+  evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"
