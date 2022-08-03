@@ -211,7 +211,8 @@ output "lambda_configmap" {
         "envEvJsonConvertorEndpoint" : "${local.ev_json_convertor_endpoint}",
         "envCalloutLambdaFunction" : "arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.callout_lambda_name}",
         "envLegacyEndpoint" : "${local.legacy_endpoint}",
-        "SlackChannel" : "${local.slack_channel}"
+        "SlackChannel" : "${local.slack_channel}",
+        "envEvossUrl": "${local.evoss_endpoint}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
