@@ -201,7 +201,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:0fa7a6b.54"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:0b60fec.108"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 100
