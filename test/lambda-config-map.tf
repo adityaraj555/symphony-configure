@@ -288,7 +288,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.uploadimage_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:a5d9282.51"
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:d3704e1.102"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -337,7 +337,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:e0bae8f.89"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:d51752d.105"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -346,7 +346,8 @@ output "sfn_lambda_configmap" {
       environment_variables = {
         "StateMachineARN" : "arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.symphony_workflow_name}",
         "SlackChannel" : "${local.slack_channel}",
-        "DBSecretARN" : "${local.property_data_orchestration_secret}"
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}"
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"

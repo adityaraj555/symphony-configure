@@ -43,6 +43,9 @@ locals {
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
 
+  // Name of the AIS workflow
+  ais_workflow_name="ais"
+  
   // Name of the symphony workflow
   receive_legacy_order_queue_name = "receiveLegacyOrder"
 
