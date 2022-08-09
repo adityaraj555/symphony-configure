@@ -6,7 +6,7 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:6c72f76.94"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:be76ef9.110"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 60
@@ -47,7 +47,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:3fe5aca.41"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:be76ef9.109"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 60
@@ -119,7 +119,7 @@ output "lambda_configmap" {
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:6c72f76.97"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:be76ef9.113"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -160,7 +160,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.legacyupdate_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:6c72f76.95"
+      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:be76ef9.111"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -285,6 +285,49 @@ output "lambda_configmap" {
           ]
       }
       EOF
+    },
+    "${local.uploadimage_lambda_name}" = {
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:be76ef9.115"
+      lambda_handler     = null
+      lambda_description = "Lambda"
+      package_type       = "Image"
+      timeout            = 60
+      memory_size        = 512
+      environment_variables = {
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "LEGACY_ENDPOINT":"${local.endpoint_url_legacy}",
+        "SlackChannel" : "${local.slack_channel}"
+      }
+      vpc_id = local.lambda_vpc_id,
+      aws_lambda_permission = [
+        "ec2.amazonaws.com"
+      ]
+      managed_policy_arns = [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      ],
+      lambda_inline_policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "ec2:DescribeInstances",
+                  "ec2:DescribeInstanceStatus",
+                  "ec2:DeleteTags",
+                  "ec2:CreateTags",
+                  "ecr:*",
+                  "secretsmanager:*",
+                  "s3:*",
+                  "lambda:*",
+                  "states:*"
+              ],
+              "Resource": "*"
+              }
+          ]
+      }
+      EOF
     }
   }
 }
@@ -293,7 +336,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:6c72f76.96"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:be76ef9.112"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
