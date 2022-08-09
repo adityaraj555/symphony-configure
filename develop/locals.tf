@@ -77,7 +77,7 @@ locals {
 
   // external URL to call form state machine
   ENDPOINT_URL_LEGACY      = "https://intranetrest.cmh.reportstest.evinternal.net"
-  ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.imageproc.evinternal.net"
+  ENDPOINT_URL_3DMODELLING = "https://measurement-service.cmh.imageproc.evinternal.net"
   ENDPOINT_URL_MA          = "https://api.cmh.platform-dev2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-dev2.evinternal.net/inform-measures"
   evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"

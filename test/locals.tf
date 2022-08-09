@@ -75,7 +75,7 @@ locals {
   upload_pdw = "https://api.cmh.platform-test2.evinternal.net/factory-dx-human-extraction/pmf-conversion/pdw"
   // external URL to call form state machine
   ENDPOINT_URL_LEGACY      = "https://intranetrest.cmh.reportstest.evinternal.net"
-  ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.pgtest.evinternal.net"
+  ENDPOINT_URL_3DMODELLING = "https://measurement-service.cmh.pgtest.evinternal.net"
   ENDPOINT_URL_MA          = "https://api.cmh.platform-test2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-test2.evinternal.net/inform-measures"
   evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"
