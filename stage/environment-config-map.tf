@@ -88,5 +88,20 @@ output "environment_config_map" {
           ]
       }
     EOT
+    sns_domain_event_subscription_legacy_sqs = <<EOF
+{
+        "company": [
+          "Eagleview"
+        ],
+        "event": [
+          "sfn_measurement_automation_workflow",
+          "sfn_automated_image_selection_workflow"
+        ],
+        "domain": [
+          "sfn_measurement_automation"
+        ]
+      }
+      EOF
   }
+  
 }

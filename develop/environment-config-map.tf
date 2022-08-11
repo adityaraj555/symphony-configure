@@ -95,8 +95,7 @@ output "environment_config_map" {
         ],
         "event": [
           "sfn_measurement_automation_workflow",
-          "sfn_automated_image_selection_workflow",
-          "sfn_measurement_automation_workflow_new"
+          "sfn_automated_image_selection_workflow"
         ],
         "domain": [
           "sfn_measurement_automation"
