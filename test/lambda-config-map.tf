@@ -255,7 +255,7 @@ output "lambda_configmap" {
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "SlackChannel" : "${local.slack_channel}",
-        "AllowedHipsterCount" : 0
+        "AllowedHipsterCount" : 2000
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"
