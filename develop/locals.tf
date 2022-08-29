@@ -49,8 +49,14 @@ locals {
   // Name of the symphony workflow
   ais_workflow_name = "ais"
 
+  // Name of the symphony workflow
+  sim_workflow_name = "sim"
+  
   // Name of the sqs queue
   receive_legacy_order_queue_name = "receiveLegacyOrder"
+
+  // Name of the sqs queue
+  receive_sim_order_queue_name = "receiveSIMOrder"
 
   // Account id
   account_id = "356071200662"
@@ -65,7 +71,7 @@ locals {
   slack_channel = "C03G9F8KDTJ"
 
   // secret manager ARN
-  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:356071200662:secret:property-data-orchestrator-secret-dVXKs2"
+  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:${local.account_id}:secret:property-data-orchestrator-secret-dVXKs2"
 
   endpoint_url_legacy = "https://intranetrest.cmh.reportstest.evinternal.net"
 
@@ -82,10 +88,10 @@ locals {
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-dev2.evinternal.net/inform-measures"
   evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"
   // external Lambdas ARN to call form ais state machine
-  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-imagery-check"
-  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-building-detection"
-  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-image-selection"
-  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-uploadimage"
+  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-imagery-check"
+  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-building-detection"
+  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-image-selection"
+  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-uploadimage"
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"
