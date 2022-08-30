@@ -378,56 +378,16 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sim_to_pdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:9b614a3.122"
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:9ee3171.128"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
-        "SlackChannel" : "${local.slack_channel}"
-      }
-      vpc_id = local.lambda_vpc_id,
-      aws_lambda_permission = [
-        "ec2.amazonaws.com"
-      ]
-      managed_policy_arns = [
-        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
-        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-      ],
-      lambda_inline_policy = <<-EOF
-      {
-          "Version": "2012-10-17",
-          "Statement": [
-              {
-              "Effect": "Allow",
-              "Action": [
-                  "ec2:DescribeInstances",
-                  "ec2:DescribeInstanceStatus",
-                  "ec2:DeleteTags",
-                  "ec2:CreateTags",
-                  "ecr:*",
-                  "secretsmanager:*",
-                  "s3:*",
-                  "lambda:*",
-                  "states:*"
-              ],
-              "Resource": "*"
-              }
-          ]
-      }
-      EOF
-    },
-    "${local.kafkapublisher_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:9b614a3.122"
-      lambda_handler     = null
-      lambda_description = "Lambda"
-      package_type       = "Image"
-      timeout            = 60
-      memory_size        = 512
-      environment_variables = {
-        "DBSecretARN" : "${local.property_data_orchestration_secret}",
-        "SlackChannel" : "${local.slack_channel}"
+        "SlackChannel" : "${local.slack_channel}",
+        "PDO_S3_BUCKET" : "${local.property_data_orchestration_s3}",
+        "DBSecretARN" : "${local.property_data_orchestration_secret}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
@@ -461,7 +421,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:9b614a3.122"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9ee3171.127"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -469,7 +429,9 @@ output "lambda_configmap" {
       memory_size        = 512
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
-        "SlackChannel" : "${local.slack_channel}"
+        "SlackChannel" : "${local.slack_channel}",
+        "AuthEndpoint" : "${local.auth_endpoint}",
+        "GraphEndpoint" : "${local.graph_endpoint}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
