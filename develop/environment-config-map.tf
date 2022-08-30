@@ -37,6 +37,9 @@ output "environment_config_map" {
     // Name of the legacy order queue
     receive_legacy_order_queue_name = local.receive_legacy_order_queue_name
 
+    // Name of the SIM order queue
+    receive_sim_order_queue_name = local.receive_sim_order_queue_name
+
     // Name of the DocumentDB Secret Manager
     property_data_orchestration_secret = local.property_data_orchestration_secret
 
