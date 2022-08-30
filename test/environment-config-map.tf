@@ -44,7 +44,7 @@ output "environment_config_map" {
     callback_lambda_name = local.callback_lambda_name
 
     // ARN for the EV-Factory account role that access the callback lambda
-    cross_account_callback_lambda = "^arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-lambda-LambdaExecutionRole-*"
+    cross_account_callback_lambda = "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-lambda-LambdaExecutionRole-*"
 
     
     // trust relationship value for external services like hipster/MA/EV_json converter
