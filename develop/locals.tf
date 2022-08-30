@@ -42,6 +42,15 @@ locals {
 
   // Name of the upload_image lambda function
   uploadimage_lambda_name = "uploadimage"
+    
+  // name of the sim2pdw lambda function
+  sim_to_pdw_lambda_name = "sim2pdw"
+
+  // Name of the kafkapublisher lambda function
+  kafkapublisher_lambda_name = "kafkapublisher"
+
+  // Name of the query_pdw lambda function
+  querypdw_lambda_name = "querypdw"
 
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
@@ -67,13 +76,16 @@ locals {
   // secret manager ARN
   property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:356071200662:secret:property-data-orchestrator-secret-dVXKs2"
 
+  property_data_orchestration_s3 = "app-dev-1x0-s3-property-data-orchestrator"
+
   endpoint_url_legacy = "https://intranetrest.cmh.reportstest.evinternal.net"
 
   // external endpoints lambda env variable
   legacy_endpoint            = "https://intranetrest.cmh.reportstest.evinternal.net/"
   ev_json_convertor_endpoint = "https://api.cmh.platform-dev2.evinternal.net/factory-dx-human-extraction/pmf-conversion/converter"
   upload_pdw = "https://api.cmh.platform-dev2.evinternal.net/factory-dx-human-extraction/pmf-conversion/pdw"
-
+  auth_endpoint = "https://api.cmh.platform-dev2.evinternal.com/auth-service"
+  graph_endpoint = "https://api.cmh.platform-dev2.evinternal.net/graph"
 
   // external URL to call form state machine
   ENDPOINT_URL_LEGACY      = "https://intranetrest.cmh.reportstest.evinternal.net"
