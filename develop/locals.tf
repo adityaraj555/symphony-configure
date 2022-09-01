@@ -52,6 +52,9 @@ locals {
   // Name of the query_pdw lambda function
   querypdw_lambda_name = "querypdw"
 
+  // Name of the notifyerror lambda function
+  sfnnotifier_lambda_name = "sfnnotifier"
+
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
 
