@@ -50,7 +50,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:be76ef9.109"
       lambda_handler     = null
       lambda_description = "Lambda"
-      timeout            = 60
+      timeout            = 200
       memory_size        = 512
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
@@ -204,7 +204,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:e287882.125"
       lambda_handler     = null
       lambda_description = "Lambda"
-      timeout            = 60
+      timeout            = 200
       memory_size        = 512
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
