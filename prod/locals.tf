@@ -79,10 +79,10 @@ locals {
   ENDPOINT_URL_MA          = "https://api.cmh.platform-prod2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-prod2.evinternal.net/inform-measures"
   // external Lambdas ARN to call form ais state machine
-  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-stage-1x0-lambda-imagery-check"
-  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-stage-1x0-lambda-building-detection"
-  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-stage-1x0-lambda-image-selection"
-  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-stage-1x0-lambda-uploadimage"
+  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-prod-1x0-lambda-imagery-check"
+  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-prod-1x0-lambda-building-detection"
+  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-prod-1x0-lambda-image-selection"
+  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-prod-1x0-lambda-uploadimage"
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "435205879315"
