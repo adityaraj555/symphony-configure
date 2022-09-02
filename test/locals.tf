@@ -52,6 +52,9 @@ locals {
   // Name of the query_pdw lambda function
   querypdw_lambda_name = "querypdw"
 
+  // Name of the notifyerror lambda function
+  sfnnotifier_lambda_name = "sfnnotifier"
+
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
 
@@ -81,6 +84,7 @@ locals {
 
   // secret manager ARN
   property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:952028532360:secret:property-data-orchestrator-secret-Ry4z7U"
+  property_data_orchestration_s3 = "app-dev-1x0-s3-property-data-orchestrator"
 
   endpoint_url_legacy = "https://intranetrest.cmh.reportstest.evinternal.net"
 
