@@ -164,7 +164,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
-      timeout            = 60
+      timeout            = 180
       memory_size        = 512
       environment_variables = {
         LEGACY_ENDPOINT : "${local.legacy_endpoint}",
@@ -291,7 +291,7 @@ output "lambda_configmap" {
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
-      timeout            = 60
+      timeout            = 180
       memory_size        = 512
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
