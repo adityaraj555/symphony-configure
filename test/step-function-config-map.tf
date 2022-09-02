@@ -29,6 +29,13 @@ output "step_function_config_map" {
       ARN_UPLOAD_IMAGE="${local.ARN_UPLOAD_IMAGE}"
       ENDPOINT_URL_LEGACY = "${local.ENDPOINT_URL_LEGACY}",
       }
+    },
+    "${local.sim_workflow_name}" = {
+      source_path = "../../stepfunctions/sim/state-machine.json",
+      sfn_def_env_vars = {
+      region        = "${local.region}",
+      resource_name_prefix = "${local.resource_name_prefix}"
+      }
     }
   }
 }
