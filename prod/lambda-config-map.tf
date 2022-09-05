@@ -6,7 +6,7 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:be76ef9.110"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:a27d119.121"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 60
@@ -47,7 +47,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:be76ef9.109"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:a27d119.120"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 200
@@ -160,7 +160,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.legacyupdate_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:be76ef9.111"
+      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:a27d119.122"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
