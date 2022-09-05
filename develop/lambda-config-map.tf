@@ -90,7 +90,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:9b614a3.115"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:1eada11.150"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -165,7 +165,8 @@ output "lambda_configmap" {
                   "secretsmanager:*",
                   "s3:*",
                   "lambda:*",
-                  "states:*"
+                  "states:*",
+                  "sqs:SendMessage"
               ],
               "Resource": "*"
               }
@@ -421,7 +422,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9ee3171.127"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:1eada11.151"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
