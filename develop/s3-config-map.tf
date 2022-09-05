@@ -10,7 +10,7 @@ output "s3_config_map" {
         "arn:aws:iam::671236419730:role/EC2-Admin",
         "arn:aws:iam::671236419730:role/us-east-2-dev-default-hermes-instance",
         "arn:aws:iam::671236419730:root",
-        "arn:aws:iam::671236419730:role/measurement-service-test-callback-lambda-role"         
+        "arn:aws:iam::671236419730:role/measurement-service-dev-callback-lambda-role"         
       ]
       actions = [
       "s3:GetObject",
