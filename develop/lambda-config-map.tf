@@ -246,7 +246,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:9b614a3.121"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:99cfd3b.139"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
