@@ -91,6 +91,47 @@ output "environment_config_map" {
       }
     EOT
 
+trust_relashionships_external_service_factory_dx = <<EOT
+{
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                      }
+                  }
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                      }
+                  }
+              }
+          ]
+      }
+    EOT
+
     sns_domain_event_subscription_legacy_sqs = <<EOF
 {
         "company": [
