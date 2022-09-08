@@ -6,7 +6,7 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:bfcb441.166"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:340039b.141"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 60
@@ -47,7 +47,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:bfcb441.165"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:340039b.140"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 200
@@ -119,7 +119,7 @@ output "lambda_configmap" {
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:bfcb441.167"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:340039b.144"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -160,7 +160,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.legacyupdate_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:a27d119.122"
+      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:340039b.142"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -201,7 +201,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:bfcb441.168"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:340039b.145"
       lambda_handler     = null
       lambda_description = "Lambda"
       timeout            = 200
@@ -245,7 +245,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:bfcb441.170"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:340039b.146"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -254,7 +254,7 @@ output "lambda_configmap" {
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "SlackChannel" : "${local.slack_channel}",
-        "AllowedHipsterCount" : 0
+        "AllowedHipsterCount" : 2000
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"
@@ -287,7 +287,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.uploadimage_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:be76ef9.115"
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:340039b.147"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -336,7 +336,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:bfcb441.169"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:340039b.143"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
