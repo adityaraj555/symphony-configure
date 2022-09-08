@@ -59,13 +59,13 @@ EOF
     {
      "Effect": "Allow",
      "Principal": {
-         "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/E09EAD6977269F0D71AB62C95222F0AF"
+         "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
      },
      "Action": "sts:AssumeRoleWithWebIdentity",
      "Condition": {
          "StringEquals": {
-             "oidc.eks.us-east-2.amazonaws.com/id/E09EAD6977269F0D71AB62C95222F0AF:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
-             "oidc.eks.us-east-2.amazonaws.com/id/E09EAD6977269F0D71AB62C95222F0AF:aud": "sts.amazonaws.com"
+             "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
+             "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
          }
     }
   
