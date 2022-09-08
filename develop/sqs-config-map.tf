@@ -42,27 +42,26 @@ EOF
       sse                        = true
       policy                     = <<-EOF
         {
-  "Version": "2008-10-17",
-  "Statement": [
-    {
-      "Sid": "__owner_statement",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": [  
-          "arn:aws:iam::${local.account_id}:root"
-        ],
-        "Service": "sns.amazonaws.com"
-      },
-      "Action": "SQS:*",
-      "Resource": "arn:aws:sqs:${local.region}:${local.account_id}:${local.resource_name_prefix}-sqs-${local.receive_sim_order_queue_name}"
-    },
-    {
-     "Effect": "Allow",
-     "Principal": {
-         "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
-     }
-  
-  ]
+	"Version": "2008-10-17",
+	"Statement": [{
+			"Sid": "__owner_statement",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": [
+					"arn:aws:iam::${local.account_id}:root"
+				],
+				"Service": "sns.amazonaws.com"
+			},
+			"Action": "SQS:*",
+			"Resource": "arn:aws:sqs:${local.region}:${local.account_id}:${local.resource_name_prefix}-sqs-${local.receive_sim_order_queue_name}"
+		},
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+			}
+		}
+	]
 }
 EOF
     }
