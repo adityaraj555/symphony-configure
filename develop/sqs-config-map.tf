@@ -55,7 +55,20 @@ EOF
       },
       "Action": "SQS:*",
       "Resource": "arn:aws:sqs:${local.region}:${local.account_id}:${local.resource_name_prefix}-sqs-${local.receive_sim_order_queue_name}"
+    },
+    {
+     "Effect": "Allow",
+     "Principal": {
+         "Federated": "arn:aws:iam::356071200662:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/E09EAD6977269F0D71AB62C95222F0AF"
+     },
+     "Action": "sts:AssumeRoleWithWebIdentity",
+     "Condition": {
+         "StringEquals": {
+             "oidc.eks.us-east-2.amazonaws.com/id/E09EAD6977269F0D71AB62C95222F0AF:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
+             "oidc.eks.us-east-2.amazonaws.com/id/E09EAD6977269F0D71AB62C95222F0AF:aud": "sts.amazonaws.com"
+         }
     }
+  
   ]
 }
 EOF
