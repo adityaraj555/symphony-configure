@@ -540,6 +540,7 @@ output "sfn_lambda_configmap" {
         "SlackChannel" : "${local.slack_channel}",
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}"
+        "SIMStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.sim_workflow_name}"
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"
