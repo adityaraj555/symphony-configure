@@ -528,7 +528,7 @@ output "sfn_lambda_configmap" {
   value = {
 
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:9b614a3.118"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:e91aa23.148"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
