@@ -435,7 +435,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9abdad0.163"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:d603297.167"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -479,7 +479,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sfnnotifier_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:9abdad0.166"
+      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:d603297.168"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
