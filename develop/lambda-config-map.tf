@@ -6,7 +6,7 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:9b614a3.116"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:9abdad0.156"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -48,7 +48,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.legacyupdate_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:9b614a3.117"
+      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:9abdad0.157"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -90,7 +90,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:1eada11.150"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:9abdad0.155"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -217,7 +217,7 @@ output "lambda_configmap" {
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:9b614a3.119"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:9abdad0.159"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -259,7 +259,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:99cfd3b.139"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:9abdad0.161"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -303,7 +303,7 @@ output "lambda_configmap" {
     },
 
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:9b614a3.120"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:9abdad0.160"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -349,7 +349,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.uploadimage_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:9b614a3.122"
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:9abdad0.162"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -392,7 +392,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sim_to_pdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:87cdada.135"
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:9abdad0.164"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -435,7 +435,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:1eada11.151"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9abdad0.163"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -479,7 +479,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sfnnotifier_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9ee3171.127"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9abdad0.166"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -528,7 +528,7 @@ output "sfn_lambda_configmap" {
   value = {
 
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:e91aa23.148"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:9abdad0.158"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
