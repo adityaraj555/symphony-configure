@@ -392,7 +392,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sim_to_pdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:9abdad0.164"
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:d82cc2e.169"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
