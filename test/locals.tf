@@ -59,7 +59,7 @@ locals {
   symphony_workflow_name = "symphony_workflow"
 
   // Name of the AIS workflow
-  ais_workflow_name="ais"
+  ais_workflow_name = "ais"
 
   // Name of the symphony workflow
   sim_workflow_name = "sim"
@@ -83,7 +83,7 @@ locals {
   slack_channel = "C03G9F8KDTJ"
 
   // secret manager ARN
-  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:952028532360:secret:property-data-orchestrator-secret-Ry4z7U"
+  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:${local.account_id}:secret:property-data-orchestrator-secret-Ry4z7U"
   property_data_orchestration_s3 = "app-dev-1x0-s3-property-data-orchestrator"
 
   endpoint_url_legacy = "https://intranetrest.cmh.reportstest.evinternal.net"
@@ -103,10 +103,12 @@ locals {
   evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"
 
   // external Lambdas ARN to call form ais state machine
-  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-imagery-check"
-  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-building-detection"
-  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-image-selection"
-  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:952028532360:function:app-test-1x0-lambda-uploadimage"
+  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-imagery-check"
+  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-building-detection"
+  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-image-selection"
+  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-uploadimage"
+  ARN_QUERY_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-querypdw"
+  ARN_SIM2_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-sim2pdw"
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"
@@ -117,9 +119,7 @@ locals {
   // EKS Cluster ID.  Used to allow services from this cluster to call lambda functions.
   eks_cluster_id = "67D98F13C8DD341212F95E682BFA75EE"
 
-  SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/356071200662/app-test-1x0-sqs-sim-request-queue"
+  SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/${local.account_id}/app-${local.environment}-1x0-sqs-sim-request-queue"
   GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-test2.evinternal.net/graph-publish/api/v2/publish"
   ENDPOINT_AUTH_TOKEN="https://api.cmh.platform-test2.evinternal.com/auth-service/v1/token"
-  ARN_QUERY_PDW="arn:aws:lambda:us-east-2:356071200662:function:app-test-1x0-lambda-querypdw"
-  ARN_SIM2_PDW="arn:aws:lambda:us-east-2:356071200662:function:app-test-1x0-lambda-sim2pdw"
 }
