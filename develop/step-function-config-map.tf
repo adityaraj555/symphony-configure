@@ -37,11 +37,11 @@ output "step_function_config_map" {
       sfn_def_env_vars = {
       region        = "${local.region}",
       resource_name_prefix = "${local.resource_name_prefix}",
-      SIM_QUEUE_URL="${local.SIM_QUEUE_URL}"
-      GRAPH_PUBLISH_URL="${local.GRAPH_PUBLISH_URL}"
-      ENDPOINT_AUTH_TOKEN="${local.ENDPOINT_AUTH_TOKEN}"
-      ARN_QUERY_PDW="${local.ARN_QUERY_PDW}"
-      ARN_SIM2_PDW="${local.ARN_SIM2_PDW}"
+      SIM_QUEUE_URL="${local.SIM_QUEUE_URL}",
+      GRAPH_PUBLISH_URL="${local.GRAPH_PUBLISH_URL}",
+      ENDPOINT_AUTH_TOKEN="${local.ENDPOINT_AUTH_TOKEN}",
+      ARN_QUERY_PDW="${local.ARN_QUERY_PDW}",
+      ARN_SIM2_PDW="${local.ARN_SIM2_PDW}",
       }
     }
   }
