@@ -118,4 +118,9 @@ locals {
   eks_cluster_id = "43F424AE2B4DD0EA667BEF4D39D2F566"
   eks_platform_cluster_id = "E09EAD6977269F0D71AB62C95222F0AF"
 
+  SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/356071200662/app-dev-1x0-sqs-sim-request-queue"
+  GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-dev2.evinternal.net/graph-publish/api/v2/publish"
+  ENDPOINT_AUTH_TOKEN="https://api.cmh.platform-dev2.evinternal.com/auth-service/v1/token"
+  ARN_QUERY_PDW="arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-querypdw"
+  ARN_SIM2_PDW="arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-sim2pdw"
 }
