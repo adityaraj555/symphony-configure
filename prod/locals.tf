@@ -75,7 +75,7 @@ locals {
 
   // external URL to call form state machine
   ENDPOINT_URL_LEGACY      = "https://intranetrest.cmh.reportsprod.evinternal.net"
-  ENDPOINT_URL_3DMODELLING = "http://measurement-service.cmh.pgprod.evinternal.net"               
+  ENDPOINT_URL_3DMODELLING = "https://measurement-service.cmh.pgprod.evinternal.net"               
   ENDPOINT_URL_MA          = "https://api.cmh.platform-prod2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-prod2.evinternal.net/inform-measures"
   // external Lambdas ARN to call form ais state machine
