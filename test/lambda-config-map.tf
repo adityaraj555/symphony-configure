@@ -6,9 +6,10 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:9b614a3.116"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:9abdad0.156"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -47,9 +48,10 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:9b614a3.115"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:9abdad0.155"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -91,38 +93,65 @@ output "lambda_configmap" {
 
       lambda_assume_role_policy = <<-EOF
       {
-        "Version": "2012-10-17",
-        "Statement": [
-          {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-              "Service": "lambda.amazonaws.com"
-            },
-            "Effect": "Allow"
-          },
-          {
-            "Effect": "Allow",
-            "Principal": {
-              "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
-            },
-            "Action": "sts:AssumeRoleWithWebIdentity",
-            "Condition": {
-              "StringEquals": {
-                "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com",
-                "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account"
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                      }
+                  }
+              },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:pmf-conversion-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                      }
+                  }
+              },
+              {
+                "Effect": "Allow",
+                "Principal": {
+                    "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+                },
+                "Action": "sts:AssumeRoleWithWebIdentity",
+                "Condition": {
+                    "StringEquals": {
+                        "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
+                        "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                    }
+                }
               }
-            }
-          }
-        ]
-      }
+          ]
+        }
       EOF
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:9b614a3.119"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:9abdad0.159"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -160,14 +189,15 @@ output "lambda_configmap" {
       EOF
     },
     "${local.legacyupdate_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:9b614a3.117"
+      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:9abdad0.157"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
-        LEGACY_ENDPOINT : "https://intranetrest.cmh.reportstest.evinternal.net/",
+        LEGACY_ENDPOINT : "${local.legacy_endpoint}",
         LEGACY_AUTH_SECRET : "${local.property_data_orchestration_secret}"
       }
       aws_lambda_permission = [
@@ -201,9 +231,10 @@ output "lambda_configmap" {
       EOF
     },
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:a2838b9.123"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:9abdad0.160"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -246,10 +277,11 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:99cfd3b.139"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:9abdad0.161"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -288,7 +320,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.uploadimage_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:9b614a3.122"
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:9abdad0.162"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -374,7 +406,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9ee3171.127"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:d603297.167"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -385,6 +417,48 @@ output "lambda_configmap" {
         "SlackChannel" : "${local.slack_channel}",
         "AuthEndpoint" : "${local.auth_endpoint}",
         "GraphEndpoint" : "${local.graph_endpoint}"
+      }
+      vpc_id = local.lambda_vpc_id,
+      aws_lambda_permission = [
+        "ec2.amazonaws.com"
+      ]
+      managed_policy_arns = [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      ],
+      lambda_inline_policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "ec2:DescribeInstances",
+                  "ec2:DescribeInstanceStatus",
+                  "ec2:DeleteTags",
+                  "ec2:CreateTags",
+                  "ecr:*",
+                  "secretsmanager:*",
+                  "s3:*",
+                  "lambda:*",
+                  "states:*"
+              ],
+              "Resource": "*"
+              }
+          ]
+      }
+      EOF
+    },
+    "${local.sfnnotifier_lambda_name}" = {
+      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:d603297.168"
+      lambda_handler     = null
+      lambda_description = "Lambda"
+      package_type       = "Image"
+      timeout            = 60
+      memory_size        = 512
+      environment_variables = {
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "SlackChannel" : "${local.slack_channel}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [

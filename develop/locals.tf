@@ -102,11 +102,14 @@ locals {
   ENDPOINT_URL_MA          = "https://api.cmh.platform-dev2.evinternal.net/factory-automeasure"
   ENDPOINT_URL_HIPSTER     = "https://api.cmh.platform-dev2.evinternal.net/inform-measures"
   evoss_endpoint           = "https://evossapi.cmh.reportstest.evinternal.net"
+
   // external Lambdas ARN to call form ais state machine
-  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-imagery-check"
-  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-building-detection"
-  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-image-selection"
-  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-dev-1x0-lambda-uploadimage"
+  ARN_IMAGERY_CHECK      = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-imagery-check"
+  ARN_BUILDING_DETECTION = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-building-detection"
+  ARN_IMAGE_SELECTION    = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-image-selection"
+  ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-uploadimage"
+  ARN_QUERY_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-querypdw"
+  ARN_SIM2_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-sim2pdw"
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"
@@ -118,9 +121,7 @@ locals {
   eks_cluster_id = "43F424AE2B4DD0EA667BEF4D39D2F566"
   eks_platform_cluster_id = "E09EAD6977269F0D71AB62C95222F0AF"
 
-  SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/356071200662/app-dev-1x0-sqs-sim-request-queue"
+  SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/${local.account_id}/app-${local.environment}-1x0-sqs-sim-request-queue"
   GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-dev2.evinternal.net/graph-publish/api/v2/publish"
   ENDPOINT_AUTH_TOKEN="https://api.cmh.platform-dev2.evinternal.com/auth-service/v1/token"
-  ARN_QUERY_PDW="arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-querypdw"
-  ARN_SIM2_PDW="arn:aws:lambda:us-east-2:356071200662:function:app-dev-1x0-lambda-sim2pdw"
 }
