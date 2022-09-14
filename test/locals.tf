@@ -46,9 +46,6 @@ locals {
   // name of the sim2pdw lambda function
   sim_to_pdw_lambda_name = "sim2pdw"
 
-  // Name of the kafkapublisher lambda function
-  kafkapublisher_lambda_name = "kafkapublisher"
-
   // Name of the query_pdw lambda function
   querypdw_lambda_name = "querypdw"
 

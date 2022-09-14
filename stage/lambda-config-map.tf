@@ -9,6 +9,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:340039b.141"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -50,6 +51,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:340039b.140"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 200
       memory_size        = 512
       environment_variables = {
@@ -81,7 +83,11 @@ output "lambda_configmap" {
                   "secretsmanager:*",
                   "s3:*",
                   "lambda:*",
-                  "states:*"
+                  "states:*",
+                  "sqs:DeleteMessage",
+                  "sqs:ReceiveMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:SendMessage"
               ],
               "Resource": "*"
               }
@@ -112,7 +118,33 @@ output "lambda_configmap" {
                 "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account"
               }
             }
-          }
+          },
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:pmf-conversion-service-account",
+                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                      }
+                  }
+              },
+              {
+                "Effect": "Allow",
+                "Principal": {
+                    "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}"
+                },
+                "Action": "sts:AssumeRoleWithWebIdentity",
+                "Condition": {
+                    "StringEquals": {
+                        "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
+                        "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                    }
+                }
+            }
         ]
       }
       EOF
@@ -123,6 +155,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -164,6 +197,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -204,6 +238,7 @@ output "lambda_configmap" {
       image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:340039b.145"
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 200
       memory_size        = 512
       environment_variables = {
@@ -211,7 +246,8 @@ output "lambda_configmap" {
         "envEvJsonConvertorEndpoint" : "${local.ev_json_convertor_endpoint}",
         "envCalloutLambdaFunction" : "arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.callout_lambda_name}",
         "envLegacyEndpoint" : "${local.legacy_endpoint}",
-        "SlackChannel" : "${local.slack_channel}"
+        "SlackChannel" : "${local.slack_channel}",
+        "envEvossUrl": "${local.evoss_endpoint}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
@@ -249,6 +285,7 @@ output "lambda_configmap" {
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
+      package_type       = "Image"
       timeout            = 60
       memory_size        = 512
       environment_variables = {
@@ -328,6 +365,136 @@ output "lambda_configmap" {
           ]
       }
       EOF
+    },
+    "${local.sim_to_pdw_lambda_name}" = {
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:d82cc2e.169"
+      lambda_handler     = null
+      lambda_description = "Lambda"
+      package_type       = "Image"
+      timeout            = 60
+      memory_size        = 512
+      environment_variables = {
+        "SlackChannel" : "${local.slack_channel}",
+        "PDO_S3_BUCKET" : "${local.property_data_orchestration_s3}",
+        "DBSecretARN" : "${local.property_data_orchestration_secret}"
+      }
+      vpc_id = local.lambda_vpc_id,
+      aws_lambda_permission = [
+        "ec2.amazonaws.com"
+      ]
+      managed_policy_arns = [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      ],
+      lambda_inline_policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "ec2:DescribeInstances",
+                  "ec2:DescribeInstanceStatus",
+                  "ec2:DeleteTags",
+                  "ec2:CreateTags",
+                  "ecr:*",
+                  "secretsmanager:*",
+                  "s3:*",
+                  "lambda:*",
+                  "states:*"
+              ],
+              "Resource": "*"
+              }
+          ]
+      }
+      EOF
+    },
+    "${local.querypdw_lambda_name}" = {
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9af2dd6.173"
+      lambda_handler     = null
+      lambda_description = "Lambda"
+      package_type       = "Image"
+      timeout            = 60
+      memory_size        = 512
+      environment_variables = {
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "SlackChannel" : "${local.slack_channel}",
+        "AuthEndpoint" : "${local.auth_endpoint}",
+        "GraphEndpoint" : "${local.graph_endpoint}"
+      }
+      vpc_id = local.lambda_vpc_id,
+      aws_lambda_permission = [
+        "ec2.amazonaws.com"
+      ]
+      managed_policy_arns = [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      ],
+      lambda_inline_policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "ec2:DescribeInstances",
+                  "ec2:DescribeInstanceStatus",
+                  "ec2:DeleteTags",
+                  "ec2:CreateTags",
+                  "ecr:*",
+                  "secretsmanager:*",
+                  "s3:*",
+                  "lambda:*",
+                  "states:*"
+              ],
+              "Resource": "*"
+              }
+          ]
+      }
+      EOF
+    },
+    "${local.sfnnotifier_lambda_name}" = {
+      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:f4e845e.172"
+      lambda_handler     = null
+      lambda_description = "Lambda"
+      package_type       = "Image"
+      timeout            = 60
+      memory_size        = 512
+      environment_variables = {
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "SlackChannel" : "${local.slack_channel}",
+        "AuthEndpoint" : "${local.auth_endpoint}"
+      }
+      vpc_id = local.lambda_vpc_id,
+      aws_lambda_permission = [
+        "ec2.amazonaws.com"
+      ]
+      managed_policy_arns = [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      ],
+      lambda_inline_policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "ec2:DescribeInstances",
+                  "ec2:DescribeInstanceStatus",
+                  "ec2:DeleteTags",
+                  "ec2:CreateTags",
+                  "ecr:*",
+                  "secretsmanager:*",
+                  "s3:*",
+                  "lambda:*",
+                  "states:*"
+              ],
+              "Resource": "*"
+              }
+          ]
+      }
+      EOF
     }
   }
 }
@@ -346,9 +513,9 @@ output "sfn_lambda_configmap" {
         "StateMachineARN" : "arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.symphony_workflow_name}",
         "SlackChannel" : "${local.slack_channel}",
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
-        "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}"
-        "SFNNotifierLambdaARN":"arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.sfnnotifier_lambda_name}",
-
+        "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}",
+        "SIMStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.sim_workflow_name}",
+        "SFNNotifierLambdaARN":"arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.sfnnotifier_lambda_name}"
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"
@@ -384,8 +551,16 @@ output "sfn_lambda_configmap" {
                   "sqs:GetQueueAttributes"
                 ],
                 "Resource": "arn:aws:sqs:${local.region}:${local.account_id}:${local.resource_name_prefix}-sqs-${local.receive_legacy_order_queue_name}"
-              }
-              
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:DeleteMessage",
+                  "sqs:ReceiveMessage",
+                  "sqs:GetQueueAttributes"
+                ],
+                "Resource": "arn:aws:sqs:${local.region}:${local.account_id}:${local.resource_name_prefix}-sqs-${local.receive_sim_order_queue_name}"
+              } 
           ]
       }
       EOF
