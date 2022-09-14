@@ -85,7 +85,7 @@ locals {
   // secret manager ARN
   property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:${local.account_id}:secret:property-data-orchestrator-secret-dVXKs2"
 
-  property_data_orchestration_s3 = "app-dev-1x0-s3-property-data-orchestrator"
+  property_data_orchestration_s3 = "app-${local.environment}-1x0-s3-property-data-orchestrator"
 
   endpoint_url_legacy = "https://intranetrest.cmh.reportstest.evinternal.net"
 
