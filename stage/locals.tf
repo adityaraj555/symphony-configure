@@ -40,6 +40,9 @@ locals {
   // Name of the evmlconverter lambda function
   evmlconveter_lambda_name = "evmlconverter"
 
+  // Name of the notifyerror lambda function
+  sfnnotifier_lambda_name = "sfnnotifier"
+
   // Name of the upload_image lambda function
   uploadimage_lambda_name = "uploadimage"
 

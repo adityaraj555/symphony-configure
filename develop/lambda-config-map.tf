@@ -542,6 +542,7 @@ output "sfn_lambda_configmap" {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}"
         "SIMStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.sim_workflow_name}"
+        "SFNNotifierLambdaARN":"arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.sfnnotifier_lambda_name}",
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"
