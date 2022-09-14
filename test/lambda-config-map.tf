@@ -48,7 +48,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:9abdad0.155"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:f4e845e.170"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -454,7 +454,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sfnnotifier_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:d603297.168"
+      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:f4e845e.172"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -462,7 +462,8 @@ output "lambda_configmap" {
       memory_size        = 512
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
-        "SlackChannel" : "${local.slack_channel}"
+        "SlackChannel" : "${local.slack_channel}",
+        "AuthEndpoint" : "${local.auth_endpoint}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
@@ -502,7 +503,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:9b614a3.118"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:9abdad0.158"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -513,6 +514,7 @@ output "sfn_lambda_configmap" {
         "SlackChannel" : "${local.slack_channel}",
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}"
+        "SIMStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.sim_workflow_name}"
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"
