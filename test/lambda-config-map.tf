@@ -84,6 +84,9 @@ output "lambda_configmap" {
                   "s3:*",
                   "lambda:*",
                   "states:*",
+                  "sqs:DeleteMessage",
+                  "sqs:ReceiveMessage",
+                  "sqs:GetQueueAttributes",
                   "sqs:SendMessage"
               ],
               "Resource": "*"
