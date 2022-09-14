@@ -83,7 +83,8 @@ output "lambda_configmap" {
                   "secretsmanager:*",
                   "s3:*",
                   "lambda:*",
-                  "states:*"
+                  "states:*",
+                  "sqs:SendMessage"
               ],
               "Resource": "*"
               }
