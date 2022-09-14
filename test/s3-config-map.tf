@@ -7,11 +7,11 @@ output "s3_config_map" {
   value = {
     "property-data-orchestrator" = {
       identifiers = [
-        "arn:aws:iam::366384665027:role/us-east-2-roofmodel-blue-hermes-instance",
-        "arn:aws:iam::366384665027:root",
-        "arn:aws:iam::366384665027:role/us-east-2-roofmodel-green-hermes-instance",
-        "arn:aws:iam::366384665027:role/EC2-Admin",
-        "arn:aws:iam::366384665027:role/measurement-service-test-callback-lambda-role"   
+        "arn:aws:iam::${local.evtech_factory_account}:role/us-east-2-roofmodel-blue-hermes-instance",
+        "arn:aws:iam::${local.evtech_factory_account}:root",
+        "arn:aws:iam::${local.evtech_factory_account}:role/us-east-2-roofmodel-green-hermes-instance",
+        "arn:aws:iam::${local.evtech_factory_account}:role/EC2-Admin",
+        "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-test-callback-lambda-role"   
       ]
       actions = [
       "s3:GetObject",
