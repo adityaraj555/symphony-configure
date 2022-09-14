@@ -499,7 +499,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:9abdad0.158"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:85cc89c.177"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
