@@ -49,4 +49,5 @@ output "step_function_config_map" {
       resource_name_prefix = "${local.resource_name_prefix}",
       }
   }
+  }
 }
