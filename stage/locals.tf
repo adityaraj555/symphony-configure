@@ -118,7 +118,7 @@ locals {
   eks_platform_cluster_id = "E1252695E465C2A678031801B44FF559"
 
   SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/${local.account_id}/app-${local.environment}-1x0-sqs-sim-request-queue"
-  GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-test2.evinternal.net/graph-publish/api/v2/publish"
-  ENDPOINT_AUTH_TOKEN="https://api.cmh.platform-test2.evinternal.com/auth-service/v1/token"
+  GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-stage2.evinternal.net/graph-publish/api/v2/publish"
+  ENDPOINT_AUTH_TOKEN="https://api.cmh.platform-stage2.evinternal.com/auth-service/v1/token"
 
 }
