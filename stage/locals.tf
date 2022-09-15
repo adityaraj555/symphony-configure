@@ -115,7 +115,7 @@ locals {
 
   // EKS Cluster ID.  Used to allow services from this cluster to call lambda functions.
   eks_cluster_id = "70E0D0941C457DF19A8BA89DA8FE8276"
-  eks_platform_cluster_id = "6E4658A8B2A86D73F5BAAAFEFD65434D"
+  eks_platform_cluster_id = "E1252695E465C2A678031801B44FF559"
 
   SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/${local.account_id}/app-${local.environment}-1x0-sqs-sim-request-queue"
   GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-test2.evinternal.net/graph-publish/api/v2/publish"
