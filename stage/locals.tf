@@ -80,7 +80,7 @@ locals {
   slack_channel = "C03G9F8KDTJ"
 
   // secret manager ARN
-  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:633128282718:secret:property-data-orchestrator-secret-7DejBb"
+  property_data_orchestration_secret = "arn:aws:secretsmanager:us-east-2:${local.account_id}:secret:property-data-orchestrator-secret-7DejBb"
   property_data_orchestration_s3 = "app-${local.environment}-1x0-s3-property-data-orchestrator"
 
   endpoint_url_legacy = "https://intranetrest.cmh.reportsstage.evinternal.net"
@@ -119,6 +119,5 @@ locals {
 
   SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/${local.account_id}/app-${local.environment}-1x0-sqs-sim-request-queue"
   GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-stage2.evinternal.net/graph-publish/api/v2/publish"
-  ENDPOINT_AUTH_TOKEN="https://api.cmh.platform-stage2.evinternal.com/auth-service/v1/token"
-
+  ENDPOINT_AUTH_TOKEN="${local.auth_endpoint}/v1/token"
 }

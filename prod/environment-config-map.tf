@@ -37,6 +37,9 @@ output "environment_config_map" {
     // Name of the legacy order queue
     receive_legacy_order_queue_name = local.receive_legacy_order_queue_name
 
+    // Name of the SIM order queue
+    receive_sim_order_queue_name = local.receive_sim_order_queue_name
+
     //Name of the DocumentDB Secret Manager
     property_data_orchestration_secret = local.property_data_orchestration_secret
 
@@ -44,9 +47,8 @@ output "environment_config_map" {
     callback_lambda_name = local.callback_lambda_name
 
     // ARN for the EV-Factory account role that access the callback lambda
-    cross_account_callback_lambda = "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-prod-callback-lambda-role"
+    cross_account_callback_lambda = "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-${local.environment}-callback-lambda-role"
 
-    
     // trust relationship value for external services like hipster/MA/EV_json converter
     trust_relashionships_external_service = <<EOT
 {
@@ -88,6 +90,28 @@ output "environment_config_map" {
           ]
       }
     EOT
+
+    trust_relashionships_external_service_factory_dx = <<EOT
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::${local.account_id}:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/${local.eks_platform_cluster_id}"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_platform_cluster_id}:sub": "system:serviceaccount:factory-dx-reports-workflow:factory-dx-reports-workflow-service-account",
+                    "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_platform_cluster_id}:aud": "sts.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+    EOT
+
     sns_domain_event_subscription_legacy_sqs = <<EOF
 {
         "company": [
