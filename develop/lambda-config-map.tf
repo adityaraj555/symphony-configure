@@ -179,6 +179,9 @@ output "lambda_configmap" {
                   "s3:*",
                   "lambda:*",
                   "states:*",
+                  "sqs:DeleteMessage",
+                  "sqs:ReceiveMessage",
+                  "sqs:GetQueueAttributes",
                   "sqs:SendMessage"
               ],
               "Resource": "*"
@@ -435,7 +438,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:f4e845e.171"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:cddd6b5.191"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -529,7 +532,7 @@ output "sfn_lambda_configmap" {
   value = {
 
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:9abdad0.158"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:85cc89c.177"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -542,6 +545,7 @@ output "sfn_lambda_configmap" {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}"
         "SIMStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.sim_workflow_name}"
+        "SFNNotifierLambdaARN":"arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.sfnnotifier_lambda_name}",
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"
