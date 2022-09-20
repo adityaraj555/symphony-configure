@@ -52,6 +52,9 @@ locals {
   // Name of the notifyerror lambda function
   sfnnotifier_lambda_name = "sfnnotifier"
 
+  // Name of the hipster eligibility lambda
+  checkhipstereligibility_lambda_name = "checkhipstereligibility"
+
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
 
@@ -106,6 +109,8 @@ locals {
   ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-uploadimage"
   ARN_QUERY_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-querypdw"
   ARN_SIM2_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-sim2pdw"
+  ARN_CALLBACK = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-callbacklambda"
+
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "009077747887"

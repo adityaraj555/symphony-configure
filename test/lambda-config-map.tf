@@ -495,6 +495,49 @@ output "lambda_configmap" {
           ]
       }
       EOF
+    },
+    "${local.checkhipstereligibility_lambda_name}" = {
+      image_uri          = "${local.ecr_path}/${local.checkhipstereligibility_lambda_name}:52b3d51.202"
+      lambda_handler     = null
+      lambda_description = "Lambda"
+      package_type       = "Image"
+      timeout            = 60
+      memory_size        = 512
+      environment_variables = {
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "SlackChannel" : "${local.slack_channel}",
+        "callBackLambdaARN": "${local.ARN_CALLBACK}"
+      }
+      vpc_id = local.lambda_vpc_id,
+      aws_lambda_permission = [
+        "ec2.amazonaws.com"
+      ]
+      managed_policy_arns = [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      ],
+      lambda_inline_policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "ec2:DescribeInstances",
+                  "ec2:DescribeInstanceStatus",
+                  "ec2:DeleteTags",
+                  "ec2:CreateTags",
+                  "ecr:*",
+                  "secretsmanager:*",
+                  "s3:*",
+                  "lambda:*",
+                  "states:*"
+              ],
+              "Resource": "*"
+              }
+          ]
+      }
+      EOF
     }
   }
 }
