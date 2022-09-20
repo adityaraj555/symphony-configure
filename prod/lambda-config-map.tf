@@ -6,7 +6,7 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:bbe0ae9.181"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:11df2fe.208"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -48,7 +48,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:bbe0ae9.180"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:11df2fe.207"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -151,7 +151,7 @@ output "lambda_configmap" {
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:bbe0ae9.184"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:11df2fe.211"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -193,7 +193,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.legacyupdate_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:bbe0ae9.182"
+      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:11df2fe.209"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -235,7 +235,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:c6b4b0d.186"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:11df2fe.212"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -281,7 +281,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:bbe0ae9.185"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:11df2fe.213"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -324,7 +324,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.uploadimage_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:c6b4b0d.187"
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:11df2fe.214"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -367,7 +367,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sim_to_pdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:c6b4b0d.189"
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:11df2fe.216"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -410,7 +410,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:c6b4b0d.188"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:11df2fe.215"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -454,7 +454,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sfnnotifier_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:c6b4b0d.190"
+      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:11df2fe.217"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -495,6 +495,49 @@ output "lambda_configmap" {
           ]
       }
       EOF
+    },
+    "${local.checkhipstereligibility_lambda_name}" = {
+      image_uri          = "${local.ecr_path}/${local.checkhipstereligibility_lambda_name}:11df2fe.218"
+      lambda_handler     = null
+      lambda_description = "Lambda"
+      package_type       = "Image"
+      timeout            = 60
+      memory_size        = 512
+      environment_variables = {
+        "DBSecretARN" : "${local.property_data_orchestration_secret}",
+        "SlackChannel" : "${local.slack_channel}",
+        "callBackLambdaARN": "${local.ARN_CALLBACK}"
+      }
+      vpc_id = local.lambda_vpc_id,
+      aws_lambda_permission = [
+        "ec2.amazonaws.com"
+      ]
+      managed_policy_arns = [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      ],
+      lambda_inline_policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "ec2:DescribeInstances",
+                  "ec2:DescribeInstanceStatus",
+                  "ec2:DeleteTags",
+                  "ec2:CreateTags",
+                  "ecr:*",
+                  "secretsmanager:*",
+                  "s3:*",
+                  "lambda:*",
+                  "states:*"
+              ],
+              "Resource": "*"
+              }
+          ]
+      }
+      EOF
     }
   }
 }
@@ -503,7 +546,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:bbe0ae9.183"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:11df2fe.210"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
