@@ -124,5 +124,8 @@ locals {
 
   SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/${local.account_id}/app-${local.environment}-1x0-sqs-sim-request-queue"
   GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-test2.evinternal.net/graph-publish/api/v2/publish"
-  ENDPOINT_AUTH_TOKEN="https://api.cmh.platform-test2.evinternal.com/auth-service/v1/token"
+  ENDPOINT_AUTH_TOKEN="${local.auth_endpoint}/v1/token"
+
+  // SIM endpoints
+  SIM_HOST_URL="https://api.cmh.platform-test2.evinternal.net"
 }
