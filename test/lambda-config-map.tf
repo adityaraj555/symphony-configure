@@ -6,7 +6,7 @@ output "lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.callback_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:bbe0ae9.181"
+      image_uri          = "${local.ecr_path}/${local.callback_lambda_name}:11df2fe.208"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -48,11 +48,11 @@ output "lambda_configmap" {
       EOF
     },
     "${local.callout_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:bbe0ae9.180"
+      image_uri          = "${local.ecr_path}/${local.callout_lambda_name}:11df2fe.207"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
-      timeout            = 60
+      timeout            = 200
       memory_size        = 512
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
@@ -100,11 +100,11 @@ output "lambda_configmap" {
           "Version": "2012-10-17",
           "Statement": [
               {
-                  "Effect": "Allow",
+                  "Action": "sts:AssumeRole",
                   "Principal": {
                       "Service": "lambda.amazonaws.com"
                   },
-                  "Action": "sts:AssumeRole"
+                  "Effect": "Allow"
               },
               {
                   "Effect": "Allow",
@@ -114,8 +114,8 @@ output "lambda_configmap" {
                   "Action": "sts:AssumeRoleWithWebIdentity",
                   "Condition": {
                       "StringEquals": {
-                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account",
-                          "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com"
+                         "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:aud": "sts.amazonaws.com",
+                         "oidc.eks.us-east-2.amazonaws.com/id/${local.eks_cluster_id}:sub": "system:serviceaccount:factory-dx-human-extraction:hipster-api-service-account"
                       }
                   }
               },
@@ -151,7 +151,7 @@ output "lambda_configmap" {
 
     },
     "${local.datastore_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:bbe0ae9.184"
+      image_uri          = "${local.ecr_path}/${local.datastore_lambda_name}:11df2fe.211"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -193,7 +193,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.legacyupdate_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:bbe0ae9.182"
+      image_uri          = "${local.ecr_path}/${local.legacyupdate_lambda_name}:11df2fe.209"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -235,11 +235,11 @@ output "lambda_configmap" {
       EOF
     },
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:c6b4b0d.186"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:11df2fe.212"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
-      timeout            = 60
+      timeout            = 200
       memory_size        = 512
       environment_variables = {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
@@ -281,7 +281,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:bbe0ae9.185"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:11df2fe.213"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -324,7 +324,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.uploadimage_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:c6b4b0d.187"
+      image_uri          = "${local.ecr_path}/${local.uploadimage_lambda_name}:11df2fe.214"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -367,7 +367,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sim_to_pdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:c6b4b0d.189"
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:11df2fe.216"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -410,7 +410,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:cddd6b5.191"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:11df2fe.215"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -454,7 +454,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sfnnotifier_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:c6b4b0d.190"
+      image_uri          = "${local.ecr_path}/${local.sfnnotifier_lambda_name}:11df2fe.217"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -497,7 +497,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.checkhipstereligibility_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.checkhipstereligibility_lambda_name}:52b3d51.202"
+      image_uri          = "${local.ecr_path}/${local.checkhipstereligibility_lambda_name}:11df2fe.218"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -546,7 +546,7 @@ output "sfn_lambda_configmap" {
   description = "This sets the configuration for lambdas deployed in this repo"
   value = {
     "${local.invokesfn_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:bbe0ae9.183"
+      image_uri          = "${local.ecr_path}/${local.invokesfn_lambda_name}:11df2fe.210"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -556,9 +556,9 @@ output "sfn_lambda_configmap" {
         "StateMachineARN" : "arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.symphony_workflow_name}",
         "SlackChannel" : "${local.slack_channel}",
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
-        "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}"
-        "SIMStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.sim_workflow_name}"
-        "SFNNotifierLambdaARN":"arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.sfnnotifier_lambda_name}",
+        "AISStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.ais_workflow_name}",
+        "SIMStateMachineARN":"arn:aws:states:${local.region}:${local.account_id}:stateMachine:${local.resource_name_prefix}-sfn-${local.sim_workflow_name}",
+        "SFNNotifierLambdaARN":"arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.sfnnotifier_lambda_name}"
       }
       aws_lambda_permission = [
         "ec2.amazonaws.com"

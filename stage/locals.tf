@@ -52,16 +52,19 @@ locals {
   // Name of the notifyerror lambda function
   sfnnotifier_lambda_name = "sfnnotifier"
 
+  // Name of the hipster eligibility lambda
+  checkhipstereligibility_lambda_name = "checkhipstereligibility"
+
   // Name of the symphony workflow
   symphony_workflow_name = "symphony_workflow"
 
   // Name of the AIS workflow
-  ais_workflow_name="ais"
+  ais_workflow_name = "ais"
   
   // Name of the symphony workflow
   sim_workflow_name = "sim"
 
-  // Name of the symphony workflow
+  // Name of the sqs queue
   receive_legacy_order_queue_name = "receiveLegacyOrder"
 
   // Name of the sqs queue
@@ -106,6 +109,8 @@ locals {
   ARN_UPLOAD_IMAGE       = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-uploadimage"
   ARN_QUERY_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-querypdw"
   ARN_SIM2_PDW = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-sim2pdw"
+  ARN_CALLBACK = "arn:aws:lambda:us-east-2:${local.account_id}:function:app-${local.environment}-1x0-lambda-callbacklambda"
+
 
   // IAM Role of Monolith Legacy Reports
   legacy_report_account = "666553143078"
@@ -120,4 +125,7 @@ locals {
   SIM_QUEUE_URL="https://sqs.us-east-2.amazonaws.com/${local.account_id}/app-${local.environment}-1x0-sqs-sim-request-queue"
   GRAPH_PUBLISH_URL="https://dx-services.cmh.platform-stage2.evinternal.net/graph-publish/api/v2/publish"
   ENDPOINT_AUTH_TOKEN="${local.auth_endpoint}/v1/token"
+
+  // SIM endpoints
+  SIM_HOST_URL="https://api.cmh.platform-stage2.evinternal.net"
 }
