@@ -127,5 +127,5 @@ locals {
   ENDPOINT_AUTH_TOKEN="${local.auth_endpoint}/v1/token"
 
   // SIM endpoints
-  SIM_ENDPOINT="https://api.cmh.platform-test2.evinternal.net"
+  SIM_HOST_URL="https://api.cmh.platform-test2.evinternal.net"
 }
