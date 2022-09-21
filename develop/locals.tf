@@ -131,4 +131,9 @@ locals {
 
   // SIM endpoints
   SIM_HOST_URL="https://api.cmh.platform-dev2.evinternal.net"
+
+  //task names
+  Task3DModellingService="3DModellingService"
+  TaskCreateHipsterJobAndWaitForMeasurement = "CreateHipsterJobAndWaitForMeasurement"
+  TaskUpdateHipsterJobAndWaitForQC = "UpdateHipsterJobAndWaitForQC"
 }
