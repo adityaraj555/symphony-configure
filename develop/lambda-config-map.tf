@@ -306,7 +306,7 @@ output "lambda_configmap" {
     },
 
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:9abdad0.160"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:78823e2.219"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -318,7 +318,9 @@ output "lambda_configmap" {
         "envCalloutLambdaFunction" : "arn:aws:lambda:${local.region}:${local.account_id}:function:${local.resource_name_prefix}-lambda-${local.callout_lambda_name}",
         "envLegacyEndpoint" : "${local.legacy_endpoint}",
         "SlackChannel" : "${local.slack_channel}",
-        "envEvossUrl": "${local.evoss_endpoint}"
+        "envEvossUrl": "${local.evoss_endpoint}",
+        "envEvossUrl": "${local.evoss_endpoint}",
+        "tasksWithPMFOutput": "${local.TaskUpdateHipsterJobAndWaitForQC},${local.TaskCreateHipsterJobAndWaitForMeasurement},${local.Task3DModellingService}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [

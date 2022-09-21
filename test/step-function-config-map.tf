@@ -17,7 +17,10 @@ output "step_function_config_map" {
       ENDPOINT_URL_UPLOAD_PDW = "${local.upload_pdw}",
       ENDPOINT_URL_PMF_CONVERTER = "${local.ev_json_convertor_endpoint}",
       SIM_HOST_URL="${local.SIM_HOST_URL}",
-      ENDPOINT_AUTH_TOKEN="${local.ENDPOINT_AUTH_TOKEN}"
+      ENDPOINT_AUTH_TOKEN="${local.ENDPOINT_AUTH_TOKEN}",
+      Task3DModellingService="${local.Task3DModellingService}",
+      TaskCreateHipsterJobAndWaitForMeasurement="${local.TaskCreateHipsterJobAndWaitForMeasurement}",
+      TaskUpdateHipsterJobAndWaitForQC="${local.TaskUpdateHipsterJobAndWaitForQC}"
       }
     },
     "${local.ais_workflow_name}" = {
