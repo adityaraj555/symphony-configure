@@ -235,7 +235,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.evmlconveter_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:78823e2.219"
+      image_uri          = "${local.ecr_path}/${local.evmlconveter_lambda_name}:0259828.222"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
