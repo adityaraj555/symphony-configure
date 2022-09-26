@@ -421,7 +421,8 @@ output "lambda_configmap" {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "SlackChannel" : "${local.slack_channel}",
         "AuthEndpoint" : "${local.auth_endpoint}",
-        "GraphEndpoint" : "${local.graph_endpoint}"
+        "GraphEndpoint" : "${local.graph_endpoint}",
+        "GeoCoderUrl": "${local.EGS_REVERSE_ENDPOINT}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
