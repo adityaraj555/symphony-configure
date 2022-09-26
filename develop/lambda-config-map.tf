@@ -440,7 +440,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:cddd6b5.191"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:10d3faa.227"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -450,8 +450,8 @@ output "lambda_configmap" {
         "DBSecretARN" : "${local.property_data_orchestration_secret}",
         "SlackChannel" : "${local.slack_channel}",
         "AuthEndpoint" : "${local.auth_endpoint}",
-        "GraphEndpoint" : "${local.graph_endpoint}"
-        "GeoCoderUrl": "${local.EGS_REVERSE_ENDPOINT}",
+        "GraphEndpoint" : "${local.graph_endpoint}",
+        "GeoCoderUrl": "${local.EGS_REVERSE_ENDPOINT}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
