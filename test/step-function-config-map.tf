@@ -20,7 +20,9 @@ output "step_function_config_map" {
       ENDPOINT_AUTH_TOKEN="${local.ENDPOINT_AUTH_TOKEN}",
       Task3DModellingService="${local.Task3DModellingService}",
       TaskCreateHipsterJobAndWaitForMeasurement="${local.TaskCreateHipsterJobAndWaitForMeasurement}",
-      TaskUpdateHipsterJobAndWaitForQC="${local.TaskUpdateHipsterJobAndWaitForQC}"
+      TaskUpdateHipsterJobAndWaitForQC="${local.TaskUpdateHipsterJobAndWaitForQC}",
+      SLACK_ENDPOINT="${local.SLACK_ENDPOINT}",
+      Hipster_Notification_Channel="${local.Hipster_Notification_Channel}"
       }
     },
     "${local.ais_workflow_name}" = {
