@@ -397,7 +397,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sim_to_pdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:d82cc2e.169"
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:1b5aed2.231"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -440,7 +440,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:10d3faa.227"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9c21e8a.234"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
@@ -528,7 +528,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.checkhipstereligibility_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.checkhipstereligibility_lambda_name}:52b3d51.202"
+      image_uri          = "${local.ecr_path}/${local.checkhipstereligibility_lambda_name}:1b5aed2.230"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
