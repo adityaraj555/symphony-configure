@@ -12,7 +12,8 @@ output "s3_config_map" {
         "arn:aws:iam::${local.evtech_factory_account}:role/us-east-2-roofmodel-green-hermes-instance",
         "arn:aws:iam::${local.evtech_factory_account}:role/EC2-Admin",
         "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-${local.environment}-callback-lambda-role",
-        "arn:aws:iam::${local.legacy_report_account}:root"  
+        "arn:aws:iam::${local.legacy_report_account}:root",
+        "arn:aws:iam::${local.legacy_report_account}:role/evmuApplication"
       ]
       actions = [
       "s3:GetObject",
