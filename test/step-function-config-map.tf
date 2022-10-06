@@ -35,6 +35,8 @@ output "step_function_config_map" {
       ARN_IMAGE_SELECTION = "${local.ARN_IMAGE_SELECTION}",
       ARN_UPLOAD_IMAGE="${local.ARN_UPLOAD_IMAGE}"
       ENDPOINT_URL_LEGACY = "${local.ENDPOINT_URL_LEGACY}",
+      SIM_HOST_URL="${local.SIM_HOST_URL}",
+      ENDPOINT_AUTH_TOKEN="${local.ENDPOINT_AUTH_TOKEN}"
       }
     },
     "${local.sim_workflow_name}" = {
