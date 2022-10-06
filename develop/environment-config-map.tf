@@ -50,7 +50,7 @@ output "environment_config_map" {
     datastore_lambda_name = local.datastore_lambda_name
 
     // ARN for the EV-Factory account role that access the callback lambda
-    cross_account_callback_lambda = "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-${local.environment}v-callback-lambda-role"
+    cross_account_callback_lambda = "arn:aws:iam::${local.evtech_factory_account}:role/measurement-service-${local.environment}-callback-lambda-role"
 
     // trust relationship value for external services like hipster/MA/EV_json converter
     trust_relashionships_external_service = <<EOT
