@@ -282,7 +282,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.throttleservice_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:e895e29.243"
+      image_uri          = "${local.ecr_path}/${local.throttleservice_lambda_name}:c452e05.282"
       vpc_id             = local.lambda_vpc_id,
       lambda_handler     = null
       lambda_description = "Lambda"
@@ -368,7 +368,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.sim_to_pdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:e895e29.246"
+      image_uri          = "${local.ecr_path}/${local.sim_to_pdw_lambda_name}:c452e05.283"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
