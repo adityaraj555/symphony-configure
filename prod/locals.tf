@@ -133,6 +133,8 @@ locals {
   Task3DModellingService="3DModellingService"
   TaskCreateHipsterJobAndWaitForMeasurement = "CreateHipsterJobAndWaitForMeasurement"
   TaskUpdateHipsterJobAndWaitForQC = "UpdateHipsterJobAndWaitForQC"
+  UpdateHipsterJobAndWaitForMeasurement = "UpdateHipsterJobAndWaitForMeasurement"
+
 
   // Slack Notification
   SLACK_ENDPOINT = "https://slack.com/api/chat.postMessage"
