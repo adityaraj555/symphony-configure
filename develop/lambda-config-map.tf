@@ -440,7 +440,7 @@ output "lambda_configmap" {
       EOF
     },
     "${local.querypdw_lambda_name}" = {
-      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:9c21e8a.234"
+      image_uri          = "${local.ecr_path}/${local.querypdw_lambda_name}:2f46f0f.278"
       lambda_handler     = null
       lambda_description = "Lambda"
       package_type       = "Image"
