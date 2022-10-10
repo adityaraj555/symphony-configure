@@ -248,7 +248,7 @@ output "lambda_configmap" {
         "envLegacyEndpoint" : "${local.legacy_endpoint}",
         "SlackChannel" : "${local.slack_channel}",
         "envEvossUrl": "${local.evoss_endpoint}",
-        "tasksWithPMFOutput": "${local.TaskUpdateHipsterJobAndWaitForQC},${local.TaskCreateHipsterJobAndWaitForMeasurement},${local.Task3DModellingService}"
+        "tasksWithPMFOutput": "${local.TaskUpdateHipsterJobAndWaitForQC},${local.TaskCreateHipsterJobAndWaitForMeasurement},${local.Task3DModellingService},${local.UpdateHipsterJobAndWaitForMeasurement}"
       }
       vpc_id = local.lambda_vpc_id,
       aws_lambda_permission = [
