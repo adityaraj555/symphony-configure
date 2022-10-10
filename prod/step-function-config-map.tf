@@ -21,6 +21,7 @@ output "step_function_config_map" {
       Task3DModellingService="${local.Task3DModellingService}",
       TaskCreateHipsterJobAndWaitForMeasurement="${local.TaskCreateHipsterJobAndWaitForMeasurement}",
       TaskUpdateHipsterJobAndWaitForQC="${local.TaskUpdateHipsterJobAndWaitForQC}",
+      UpdateHipsterJobAndWaitForMeasurement = "${local.UpdateHipsterJobAndWaitForMeasurement}",
       SLACK_ENDPOINT="${local.SLACK_ENDPOINT}",
       Hipster_Notification_Channel="${local.Hipster_Notification_Channel}"
       }
