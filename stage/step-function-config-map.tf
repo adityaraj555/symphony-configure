@@ -34,7 +34,8 @@ output "step_function_config_map" {
       ARN_IMAGERY_CHECK = "${local.ARN_IMAGERY_CHECK}",
       ARN_BUILDING_DETECTION = "${local.ARN_BUILDING_DETECTION}",
       ARN_IMAGE_SELECTION = "${local.ARN_IMAGE_SELECTION}",
-      ARN_UPLOAD_IMAGE="${local.ARN_UPLOAD_IMAGE}"
+      ARN_UPLOAD_IMAGE="${local.ARN_UPLOAD_IMAGE}",
+      SIM_HOST_URL="${local.SIM_HOST_URL}",
       ENDPOINT_URL_LEGACY = "${local.ENDPOINT_URL_LEGACY}",
       }
     },
